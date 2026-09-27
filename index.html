@@ -4,50 +4,721 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Góc Mục Tiêu Chill Chill 🌱</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    body {
-      background-color: #fcfaf7;
-      color: #4a5568;
-      font-family: 'Quicksand', sans-serif;
+    :root {
+      --bg-color: #fdfbf7;
+      --card-bg: #ffffff;
+      --primary: #a2b997;
+      --primary-hover: #8ea882;
+      --primary-light: #f0f5ee;
+      --text-main: #4a5568;
+      --text-heading: #5a7052;
+      --text-muted: #8c9e86;
+      --text-taupe: #736357;
+      --border-color: #eedecf;
+      --border-card: #f2e6d8;
+      --accent-peach: #f7d6c8;
+      --accent-yellow: #fef0d6;
+      --accent-blue: #e2f1f8;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --radius-sm: 12px;
+      --shadow-subtle: 0 10px 25px rgba(0, 0, 0, 0.03);
+      --shadow-card: 0 4px 15px rgba(162, 185, 151, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
       margin: 0;
-      padding: 20px;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: 'Quicksand', sans-serif;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
+      align-items: flex-start;
+      padding: 30px 16px;
     }
-    .container {
-      max-width: 500px;
+
+    .app-container {
+      max-width: 560px;
       width: 100%;
-      background: #ffffff;
-      border-radius: 24px;
-      padding: 24px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-      border: 1px solid #f2e7db;
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 28px 24px;
+      box-shadow: var(--shadow-subtle);
+      border: 1px solid var(--border-color);
     }
-    .btn-primary {
-      background: #a2b997;
-      color: white;
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .header-badge {
+      display: inline-block;
+      background: var(--accent-yellow);
+      color: #927238;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+
+    .header h1 {
+      color: var(--text-heading);
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .header p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .stats-bar {
+      display: flex;
+      gap: 10px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+
+    .stat-chip {
+      background: var(--primary-light);
+      color: var(--text-heading);
+      padding: 6px 14px;
+      border-radius: 16px;
+      font-size: 12px;
+      font-weight: 700;
+      border: 1px solid #e2ebd0;
+    }
+
+    .form-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 24px;
+      border: 1px solid var(--border-card);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .form-card h3 {
+      font-size: 15px;
+      color: #6b5b52;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .input-group {
+      margin-bottom: 12px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 12px;
+      color: #8c7a6e;
+      margin-bottom: 4px;
+      font-weight: 700;
+    }
+
+    .input-group input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: var(--radius-sm);
+      border: 1px solid #e8dfd5;
+      background: #faf8f5;
+      color: var(--text-main);
+      font-size: 14px;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .input-group input:focus {
+      border-color: var(--primary);
+      background: #ffffff;
+      box-shadow: 0 0 0 3px rgba(162, 185, 151, 0.2);
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .input-row .input-group {
+      flex: 1;
+      min-width: 130px;
+    }
+
+    .btn-add {
+      width: 100%;
+      padding: 13px;
       border: none;
-      padding: 12px;
-      border-radius: 14px;
+      border-radius: var(--radius-sm);
+      background: var(--primary);
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 10px rgba(162, 185, 151, 0.3);
+    }
+
+    .btn-add:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+    }
+
+    .btn-add:active {
+      transform: translateY(0);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+
+    .section-title {
+      font-size: 16px;
+      color: #6b5b52;
+      font-weight: 700;
+    }
+
+    .goal-card {
+      background: #ffffff;
+      border-radius: var(--radius-md);
+      padding: 18px;
+      border: 1px solid #eaf2e8;
+      box-shadow: var(--shadow-card);
+      margin-bottom: 16px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .goal-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(162, 185, 151, 0.12);
+    }
+
+    .goal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+
+    .goal-title {
+      margin: 0 0 4px 0;
+      color: #4a5e45;
+      font-size: 16px;
+      font-weight: 700;
+      word-break: break-word;
+    }
+
+    .goal-meta {
+      margin: 0;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .btn-test {
+      background: #fbf3e8;
+      color: #d69e5e;
+      border: 1px solid #f0e1cf;
+      border-radius: 20px;
+      padding: 4px 10px;
+      font-size: 11px;
       font-weight: 700;
       cursor: pointer;
-      width: 100%;
+      font-family: inherit;
+      transition: background 0.2s;
     }
-    .goal-card {
-      background: #fffefd;
-      border: 1px solid #f0e8dd;
-      border-radius: 18px;
-      padding: 16px;
-      margin-top: 14px;
+
+    .btn-test:hover {
+      background: #f7e6d0;
+    }
+
+    .btn-delete {
+      background: #fdf2f2;
+      color: #e57373;
+      border: 1px solid #fcdada;
+      border-radius: 50%;
+      width: 26px;
+      height: 26px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+
+    .btn-delete:hover {
+      background: #f8e1e1;
+    }
+
+    /* Slider styling */
+    .slider-container {
+      margin: 14px 0 12px 0;
+    }
+
+    .slider-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-heading);
+      margin-bottom: 6px;
+    }
+
+    .goal-slider {
+      width: 100%;
+      accent-color: var(--primary);
+      cursor: pointer;
+      height: 6px;
+      border-radius: 3px;
+    }
+
+    .feedback-box {
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+      font-size: 13px;
+      color: var(--text-taupe);
+      line-height: 1.5;
+      border-left: 4px solid #e0c9a6;
+      background: #faf6f0;
+      transition: all 0.3s ease;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 30px 10px;
+      color: #a0aec0;
+      font-size: 14px;
+    }
+
+    .empty-state-icon {
+      font-size: 40px;
+      margin-bottom: 8px;
+    }
+
+    /* Custom Pastel Modal Overlay */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(80, 70, 60, 0.25);
+      backdrop-filter: blur(4px);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+      padding: 20px;
+      animation: fadeIn 0.2s ease;
+    }
+
+    .modal-card {
+      background: #fffefb;
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      max-width: 360px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid #f0e3d5;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      animation: slideUp 0.3s ease;
+    }
+
+    .modal-icon {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .modal-card h3 {
+      margin: 0 0 8px 0;
+      color: #6b5b52;
+      font-size: 18px;
+    }
+
+    .modal-card p {
+      margin: 0 0 20px 0;
+      font-size: 13px;
+      color: #8c7a6e;
+      line-height: 1.5;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .btn-secondary {
+      padding: 10px 18px;
+      border: 1px solid #e8dfd5;
+      border-radius: var(--radius-sm);
+      background: #faf8f5;
+      color: #8c7a6e;
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2 style="color: #5a7052; text-align: center;">Góc Mục Tiêu Chill Chill 🌱</h2>
-    <p style="text-align: center; color: #8c9e86; font-size: 14px;">Lên kế hoạch nhẹ nhàng, không chút áp lực</p>
-    <!-- Thêm giao diện và đoạn JS tương tự như bản demo ở trên vào đây -->
+
+  <div class="app-container">
+    
+    <!-- Header -->
+    <div class="header">
+      <span class="header-badge">Pastel Productivity</span>
+      <h1>Góc Mục Tiêu Chill Chill 🌱</h1>
+      <p>Lên kế hoạch nhẹ nhàng • Nhắc nhở dịu êm • Không áp lực</p>
+      
+      <div class="stats-bar">
+        <div class="stat-chip" id="stat-total">Tổng: 0</div>
+        <div class="stat-chip" id="stat-done" style="background: #f0f7ef; color: #52734d;">Hoàn thành: 0</div>
+      </div>
+    </div>
+
+    <!-- Form Nhập Mục Tiêu -->
+    <div class="form-card">
+      <h3>✨ Thêm mục tiêu mới</h3>
+      
+      <div class="input-group">
+        <label for="goalName">Tên mục tiêu:</label>
+        <input type="text" id="goalName" placeholder="Ví dụ: Đọc xong 30 trang sách, làm xong slide...">
+      </div>
+      
+      <div class="input-row">
+        <div class="input-group">
+          <label for="goalDate">Thời hạn (Deadline):</label>
+          <input type="date" id="goalDate">
+        </div>
+        <div class="input-group">
+          <label for="goalTime">Giờ nhắc nhở:</label>
+          <input type="time" id="goalTime" value="20:00">
+        </div>
+      </div>
+      
+      <button class="btn-add" id="btnAddGoal">🌸 Thêm Vào Danh Sách</button>
+    </div>
+
+    <!-- Danh Sách Mục Tiêu -->
+    <div class="section-header">
+      <h3 class="section-title">📋 Mục tiêu của bạn</h3>
+    </div>
+    
+    <div id="goalsList">
+      <!-- Goals will be rendered here dynamically -->
+    </div>
+
   </div>
+
+  <!-- Modal Nhắc Nhở Nhẹ Nhàng -->
+  <div class="modal-overlay" id="reminderModal">
+    <div class="modal-card">
+      <div class="modal-icon">🍵</div>
+      <h3>Tới giờ hẹn rồi nè!</h3>
+      <p id="modalText">Ting ting! Dành chút thời gian nhẹ nhàng cho mục tiêu này nhé~</p>
+      <button class="btn-add" id="btnCloseReminder">Cảm ơn nhé, tớ biết rồi!</button>
+    </div>
+  </div>
+
+  <!-- Modal Xác Nhận Xóa (Thay thế confirm gốc) -->
+  <div class="modal-overlay" id="deleteModal">
+    <div class="modal-card">
+      <div class="modal-icon">🍃</div>
+      <h3>Xác nhận xóa?</h3>
+      <p>Cậu có chắc muốn gỡ bỏ mục tiêu này khỏi danh sách không?</p>
+      <div class="modal-actions">
+        <button class="btn-secondary" id="btnCancelDelete">Bỏ qua</button>
+        <button class="btn-add" id="btnConfirmDelete" style="background: #e57373;">Xóa luôn</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      // Data State
+      let goals = JSON.parse(localStorage.getItem('myChillGoals')) || [
+        { 
+          id: 1, 
+          name: 'Đọc 10 trang sách trà đạo', 
+          date: new Date().toISOString().split('T')[0], 
+          time: '20:00', 
+          progress: 50 
+        }
+      ];
+
+      let goalToDeleteId = null;
+
+      // DOM Elements
+      const goalsListEl = document.getElementById('goalsList');
+      const goalNameInput = document.getElementById('goalName');
+      const goalDateInput = document.getElementById('goalDate');
+      const goalTimeInput = document.getElementById('goalTime');
+      const btnAddGoal = document.getElementById('btnAddGoal');
+      const statTotal = document.getElementById('stat-total');
+      const statDone = document.getElementById('stat-done');
+
+      // Modals
+      const reminderModal = document.getElementById('reminderModal');
+      const modalText = document.getElementById('modalText');
+      const btnCloseReminder = document.getElementById('btnCloseReminder');
+
+      const deleteModal = document.getElementById('deleteModal');
+      const btnCancelDelete = document.getElementById('btnCancelDelete');
+      const btnConfirmDelete = document.getElementById('btnConfirmDelete');
+
+      // Save to LocalStorage
+      function saveGoals() {
+        localStorage.setItem('myChillGoals', JSON.stringify(goals));
+        updateStats();
+      }
+
+      // Update Header Statistics
+      function updateStats() {
+        const total = goals.length;
+        const done = goals.filter(g => parseInt(g.progress) === 100).length;
+        statTotal.textContent = `Tổng: ${total}`;
+        statDone.textContent = `Hoàn thành: ${done}`;
+      }
+
+      // Dynamic Empathetic Feedback Messages based on completion %
+      function getFeedback(val) {
+        const p = parseInt(val, 10);
+        if (p === 100) {
+          return {
+            bg: '#f0f7ef',
+            border: '#8cb88b',
+            text: '🎉 <strong>Ôi tuyệt vời quá!</strong> Cậu đã hoàn thành 100% mục tiêu rồi! Cậu có muốn thử thách bản thân thêm chút nữa bằng cách đặt một mục tiêu mới không?'
+          };
+        } else if (p >= 70) {
+          return {
+            bg: '#fdf8ec',
+            border: '#e6c875',
+            text: '✨ <strong>Cố lên nhé!</strong> Chỉ còn một chút xíu nữa là cán đích rồi. Cậu đang làm cực kỳ tốt luôn!'
+          };
+        } else if (p >= 50) {
+          return {
+            bg: '#f3f8fa',
+            border: '#92c5de',
+            text: '🌤️ <strong>Hoan hô!</strong> Cậu đã đi được một nửa chặng đường rồi đấy. Nghỉ tay một chút rồi mình cùng đi tiếp nha!'
+          };
+        } else {
+          return {
+            bg: '#faf6f0',
+            border: '#e0c9a6',
+            text: '🌱 <em>Không sao đâu nè. Có lẽ mục tiêu hơi quá sức hoặc thời gian chưa đủ. Cứ nhích từng xíu một, không cần vội vã hay áp lực đâu nhé!</em>'
+          };
+        }
+      }
+
+      // Format Date for Display
+      function formatDate(dateStr) {
+        if (!dateStr) return 'Chưa đặt';
+        const parts = dateStr.split('-');
+        if (parts.length === 3) return `${parts[2]}/${parts[1]}/${parts[0]}`;
+        return dateStr;
+      }
+
+      function renderGoals() {
+        goalsListEl.innerHTML = '';
+
+        if (goals.length === 0) {
+          goalsListEl.innerHTML = `
+            <div class="empty-state">
+              <div class="empty-state-icon">🍃</div>
+              <p>Chưa có mục tiêu nào trong danh sách.<br>Thêm một mục tiêu nho nhỏ ở trên để bắt đầu nhé!</p>
+            </div>
+          `;
+          updateStats();
+          return;
+        }
+
+        goals.forEach(goal => {
+          const fb = getFeedback(goal.progress);
+          const card = document.createElement('div');
+          card.className = 'goal-card';
+          card.setAttribute('data-id', goal.id);
+
+          card.innerHTML = `
+            <div class="goal-header">
+              <div>
+                <h4 class="goal-title">${escapeHtml(goal.name)}</h4>
+                <p class="goal-meta">
+                  <span>⏱️ Hạn chót: ${formatDate(goal.date)}</span>
+                  <span>• Nhắc: ${goal.time || '20:00'}</span>
+                </p>
+              </div>
+              <div class="action-buttons">
+                <button class="btn-test" onclick="window.triggerReminder(${goal.id})">🔔 Lời nhắc</button>
+                <button class="btn-delete" onclick="window.askDeleteGoal(${goal.id})">✕</button>
+              </div>
+            </div>
+
+            <div class="slider-container">
+              <div class="slider-info">
+                <span>Tiến độ thực hiện:</span>
+                <span class="pct-label">${goal.progress}%</span>
+              </div>
+              <input type="range" class="goal-slider" min="0" max="100" value="${goal.progress}" oninput="window.updateProgress(${goal.id}, this.value)">
+            </div>
+
+            <div class="feedback-box" style="background:${fb.bg}; border-left-color:${fb.border};">
+              ${fb.text}
+            </div>
+          `;
+
+          goalsListEl.appendChild(card);
+        });
+
+        updateStats();
+      }
+
+      // Helper to prevent HTML injection
+      function escapeHtml(str) {
+        return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+      }
+
+      // Add New Goal
+      btnAddGoal.addEventListener('click', function() {
+        const name = goalNameInput.value.trim();
+        const date = goalDateInput.value;
+        const time = goalTimeInput.value || '20:00';
+
+        if (!name) {
+          goalNameInput.focus();
+          goalNameInput.style.borderColor = '#e57373';
+          setTimeout(() => goalNameInput.style.borderColor = '#e8dfd5', 1500);
+          return;
+        }
+
+        const newGoal = {
+          id: Date.now(),
+          name: name,
+          date: date,
+          time: time,
+          progress: 0
+        };
+
+        goals.unshift(newGoal);
+        saveGoals();
+        renderGoals();
+
+        goalNameInput.value = '';
+      });
+
+      // Update Progress Slider
+      window.updateProgress = function(id, value) {
+        const goal = goals.find(g => g.id === id);
+        if (goal) {
+          goal.progress = value;
+          saveGoals();
+
+          // Update UI live without re-rendering full list for smooth sliding
+          const card = document.querySelector(`.goal-card[data-id="${id}"]`);
+          if (card) {
+            card.querySelector('.pct-label').textContent = `${value}%`;
+            const fbBox = card.querySelector('.feedback-box');
+            const fb = getFeedback(value);
+            fbBox.style.background = fb.bg;
+            fbBox.style.borderLeftColor = fb.border;
+            fbBox.innerHTML = fb.text;
+          }
+        }
+      };
+
+      // Trigger Reminder Modal
+      window.triggerReminder = function(id) {
+        const goal = goals.find(g => g.id === id);
+        if (goal) {
+          modalText.innerHTML = `Ting ting! Tới giờ dành thời gian cho mục tiêu <strong>"${escapeHtml(goal.name)}"</strong> rồi nè. Cậu xem có tiện làm bây giờ không nhé, dời lại xíu cũng không sao đâu! ☕`;
+          reminderModal.style.display = 'flex';
+        }
+      };
+
+      btnCloseReminder.addEventListener('click', function() {
+        reminderModal.style.display = 'none';
+      });
+
+      window.askDeleteGoal = function(id) {
+        goalToDeleteId = id;
+        deleteModal.style.display = 'flex';
+      };
+
+      btnCancelDelete.addEventListener('click', function() {
+        deleteModal.style.display = 'none';
+        goalToDeleteId = null;
+      });
+
+      btnConfirmDelete.addEventListener('click', function() {
+        if (goalToDeleteId) {
+          goals = goals.filter(g => g.id !== goalToDeleteId);
+          saveGoals();
+          renderGoals();
+          deleteModal.style.display = 'none';
+          goalToDeleteId = null;
+        }
+      });
+
+      // Automatic Scheduled Notification Check
+      setInterval(() => {
+        const now = new Date();
+        const currentDate = now.toISOString().split('T')[0];
+        const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+
+        goals.forEach(goal => {
+          if (goal.date === currentDate && goal.time === currentTime && parseInt(goal.progress) < 100) {
+            window.triggerReminder(goal.id);
+          }
+        });
+      }, 30000); // Checks every 30 seconds
+
+      // Set default date input to today
+      goalDateInput.value = new Date().toISOString().split('T')[0];
+
+      // Initial Render
+      renderGoals();
+
+    })();
+  </script>
 </body>
 </html>
